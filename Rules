@@ -1,0 +1,117 @@
+#!/usr/bin/env ruby
+
+# A few helpful tips about the Rules file:
+#
+# * The string given to #compile and #route are matching patterns for
+#   identifiers--not for paths. Therefore, you can’t match on extension.
+#
+# * The order of rules is important: for each item, only the first matching
+#   rule is applied.
+#
+# * Item identifiers start and end with a slash (e.g. “/about/” for the file
+#   “content/about.html”). To select all children, grandchildren, … of an
+#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
+#   because “*” matches zero or more characters.
+
+#!/usr/bin/env ruby
+
+# A few helpful tips about the Rules file:
+#
+# * The order of rules is important: for each item, only the first matching
+#   rule is applied.
+#
+# * Item identifiers start and end with a slash (e.g. “/about/” for the file
+#   “content/about.html”). To select all children, grandchildren, … of an
+#   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
+#   because “*” matches zero or more characters.
+
+preprocess do
+  # touch combined files to force compilation and output  
+  @site.items.each do |theItem|
+    if theItem[:combined] 
+       FileUtils.touch Dir.glob("./content"+theItem.identifier.chop + '.' + theItem[:extension]);
+    end
+  end
+end
+
+#
+# Compile section
+#
+
+compile '/*/*.combined/*' do
+  # don’t filter or layout
+end
+
+compile '/style/*' do
+  if item[:combined]
+     filter :erb
+  end
+end
+
+compile '/graphic/*' do
+  # don’t filter or layout
+end
+
+compile '/script/*' do
+  
+  if item[:combined]
+     filter :erb
+  end 
+  if  item[:combined] && item[:extension] != 'htc' and item.identifier != '/script/cufon-yui/' and config[:compress_jsfiles]
+     filter :uglify_js
+  end
+end
+
+compile '/data/*' do
+  # don’t filter or layout
+end
+
+compile '/templates/*' do
+  # don’t filter or layout
+end
+
+
+compile '*' do
+  layout item[:layout]? item[:layout] : 'default'
+  #filter :relativize_paths, :type => :html 
+  filter :erb
+end
+
+
+#
+# Route section
+#
+
+route '/*/*.combined/*' do
+    # don’t filter or layout
+end
+
+route '/style/*' do
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route '/graphic/*' do
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route '/script/*' do
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route '/data/*' do
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route '/templates/*' do
+  item.identifier.chop + '.' + item[:extension]
+end
+
+route '/' do
+  '/index.html'
+end
+
+route '/*' do
+  item.identifier.chop + '.html'
+end
+
+layout '*', :erb

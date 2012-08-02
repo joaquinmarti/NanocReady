@@ -1,0 +1,27 @@
+<%= render 'snippets/html_begin' %>
+
+<!-- @start Wrapper -->
+<div id="wrapper">
+
+  <!-- @start Header -->
+  <%= render 'blocks/header' %>
+  <!-- @end Header -->
+
+  <!-- @start Nav -->
+  <%= render 'blocks/nav' %>
+  <!-- @end Nav -->
+
+  <!-- @start Main content -->
+  <section id="main_content">
+  <%= yield %>
+  </section>
+  <!-- @end Main content -->
+
+  <!-- @start Footer -->
+  <%= render 'blocks/footer' %>
+  <!-- @end Footer -->
+
+</div>
+<!-- @end Wrapper -->
+
+<%= render 'snippets/html_end' %>

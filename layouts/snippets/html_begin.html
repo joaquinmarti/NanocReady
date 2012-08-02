@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]> <!--> <html class="no-js"> <!--<![endif]-->
+<head>
+
+<title><%= @item[:title] %></title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<!-- Styles - General -->
+<link href="style/reset.css" type="text/css" rel="stylesheet" media="all" />
+<link href="style/common.css" type="text/css" rel="stylesheet" media="all" />
+
+<!-- Styles - Media queries -->
+<link href="style/mobile.css" media="screen and (max-width: 767px)" type="text/css" rel="stylesheet" media="all" />
+<link href="style/tablet.css" media="screen and (min-width: 768px) and (max-width: 1023px)" type="text/css" rel="stylesheet" media="all" />
+<link href="style/desktop.css" media="screen and (min-width: 1024px) and (max-width: 1440px)" type="text/css" rel="stylesheet" media="all" />
+<link href="style/huge.css" media="screen and (min-width: 1441px)" type="text/css" rel="stylesheet" media="all" />
+
+<!-- Google Fonts -->
+
+<!-- Hacks and Bugs Explorer 7 -->
+<!--[if IE 7]>
+<link href="style/ie7.css" type="text/css" rel="stylesheet" media="screen" />
+<![endif]-->
+
+<!-- Hacks and Bugs Explorer 8 -->
+<!--[if IE 8]>
+<link href="style/ie8.css" type="text/css" rel="stylesheet" media="screen" />
+<![endif]-->
+
+<!-- Scripts -->
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.5.3/modernizr.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.8.19/jquery-ui.min.js"></script>
+<script type="text/javascript" src="script/main.js"></script>
+
+</head>
+
+<body id="<%= @item[:id]%>" class="<%= @item[:bodyClass]%>">
