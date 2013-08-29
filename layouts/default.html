@@ -1,5 +1,19 @@
 <%= render 'snippets/html_begin' %>
-    
-<%= yield %>
-    
+
+<!-- @start Wrapper -->
+<div id="wrapper">
+
+  <!-- @start Header -->
+  <%= render 'blocks/header' %>
+  <!-- @end Header -->
+
+  <%= yield %>
+
+  <!-- @start Footer -->
+  <%= render 'blocks/footer' %>
+  <!-- @end Footer -->
+
+</div>
+<!-- @end Wrapper -->
+
 <%= render 'snippets/html_end' %>

@@ -5,7 +5,7 @@
 <!--[if gt IE 8]> <!--> <html class="no-js"> <!--<![endif]-->
 <head>
 
-<title><%= @item[:title] %></title>
+<title></title>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -33,4 +33,46 @@
 
 </head>
 
-<body id="<%= @item[:id]%>" class="<%= @item[:bodyClass]%>">
+<body id="" class="">
+
+<!-- @start Wrapper -->
+<div id="wrapper">
+
+  <!-- @start Header -->
+  <header id="header">
+
+  <div class="wrapper">
+    <nav id="nav">
+      <div class="nav">
+        <ul>
+          <li><a href="#"><span>Home</span></a></li>
+          <li><a href="#"><span>Work</span></a></li>
+          <li><a href="#"><span>About</span></a></li>
+          <li><a href="#"><span>Contact</span></a></li>
+          <li><a href="#"><span>Experience</span></a></li>
+        </ul>
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+  <!-- @end Header -->
+
+  
+
+  <!-- @start Footer -->
+  <footer id="footer">
+
+  <div class="wrapper">
+    <p>Built with love, Nanoc, Sublime Text 2, SASS, jQuery and coffee.</p>
+  </div>
+
+</footer>
+  <!-- @end Footer -->
+
+</div>
+<!-- @end Wrapper -->
+
+</body>
+</html>

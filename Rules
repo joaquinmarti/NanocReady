@@ -25,26 +25,22 @@
 #   item, use the pattern “/about/*/”; “/about/*” will also select the parent,
 #   because “*” matches zero or more characters.
 
-preprocess do
-  # touch combined files to force compilation and output  
-  @site.items.each do |theItem|
-    if theItem[:combined] 
-       FileUtils.touch Dir.glob("./content"+theItem.identifier.chop + '.' + theItem[:extension]);
-    end
-  end
-end
+require 'compass'
+Compass.add_project_configuration 'config.rb'
 
 #
 # Compile section
 #
 
-compile '/*/*.combined/*' do
-  # don’t filter or layout
+compile '/style/*/*/' do
+  # ignore _files
 end
 
 compile '/style/*' do
-  if item[:combined]
-     filter :erb
+  filter :sass, Compass.sass_engine_options
+
+  if @config[:compress_css] && item.identifier == '/style/main/'
+    filter :rainpress
   end
 end
 
@@ -53,12 +49,9 @@ compile '/graphic/*' do
 end
 
 compile '/script/*' do
-  
-  if item[:combined]
-     filter :erb
-  end 
-  if  item[:combined] && item[:extension] != 'htc' and item.identifier != '/script/cufon-yui/' and config[:compress_jsfiles]
-     filter :uglify_js
+  if @config[:compress_js] && item.identifier == '/script/_all/'
+    filter :erb
+    filter :uglify_js
   end
 end
 
@@ -70,24 +63,22 @@ compile '/templates/*' do
   # don’t filter or layout
 end
 
-
 compile '*' do
   layout item[:layout]? item[:layout] : 'default'
-  #filter :relativize_paths, :type => :html 
+  #filter :relativize_paths, :type => :html
   filter :erb
 end
-
 
 #
 # Route section
 #
 
-route '/*/*.combined/*' do
-    # don’t filter or layout
+route '/style/*/*/' do
+  # ignore _files
 end
 
 route '/style/*' do
-  item.identifier.chop + '.' + item[:extension]
+  item.identifier.chop + '.css'
 end
 
 route '/graphic/*' do
