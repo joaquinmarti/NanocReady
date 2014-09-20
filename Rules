@@ -36,6 +36,10 @@ compile '/style/*/*/' do
   # ignore _files
 end
 
+compile '/style/_*' do
+  # ignore _files
+end
+
 compile '/style/*' do
   filter :sass, Compass.sass_engine_options
 
@@ -76,6 +80,11 @@ end
 route '/style/*/*/' do
   # ignore _files
 end
+
+route '/style/_*' do
+  # ignore _files
+end
+
 
 route '/style/*' do
   item.identifier.chop + '.css'

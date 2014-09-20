@@ -1,0 +1,115 @@
+
+// Webkit-fix
+
+@mixin webkit-fix() {
+  html.no-touch & {
+    -webkit-backface-visibility: hidden;
+    -webkit-transform-style: preserve-3d;
+  }
+}
+
+
+// Font-face mixin
+// ---
+// Generates css code for local webfonts definition
+
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal ) {
+  @font-face {
+    font-family: $font-family;
+    src: url('#{$file-path}-eot.eot');
+    src: url('#{$file-path}-eot.eot?#iefix') format('embedded-opentype'),
+         url('#{$file-path}-woff.woff') format('woff'),
+         url('#{$file-path}-ttf.ttf') format('truetype'),
+         url('#{$file-path}-svg.svg##{$font-family}-#{$weight}-#{$style}') format('svg');
+    font-weight: $weight;
+    font-style: $style;
+  }
+}
+
+// Input placeholder mixin
+// ---
+// Generates both styles for placeholder on supported browsers and also
+// to ".placeholding" class used by "jquery.simpleplaceholder" plugin
+
+@mixin placeholder {
+  &.placeholding { @content }
+  &:-moz-placeholder { @content }
+  &::-webkit-input-placeholder { @content }
+  &:-ms-input-placeholder { @content }
+}
+
+// first-child mixin
+// ---
+// Generates both css styles for :first-child and .first-child
+
+@mixin first-child {
+  &.first-child { @content }
+  &:first-child { @content }
+}
+
+// last-child mixin
+// ---
+// Generates both css styles for :last-child and .last-child
+
+@mixin last-child {
+  &.last-child { @content }
+  &:last-child { @content }
+}
+
+// text-hover
+// ---
+// Generates styles for an animated &:hover
+
+@mixin text-hover($color) {
+  @include transition-property(color);
+  @include transition-duration($text_rollover_duration);
+
+  &:hover {
+    color: $color;
+  }
+}
+
+// animation
+// ---
+// Generates vendor prefixes to call animations
+//
+// @include animation(
+//   $name: loadingProgressBarFlashAnimation,
+//   $duration: 2s,
+//   $delay: 1s,
+//   $iteration-count: infinite,
+//   $timing-function: linear,
+//   $fill-mode: both
+// );
+
+@mixin animation(
+  $name: blink,
+  $duration: 500ms,
+  $delay: 0s,
+  $iteration-count: 1,
+  $timing-function: ease,
+  $fill-mode: both
+) {
+  -webkit-animation: $name $duration $delay $timing-function $iteration-count;
+  -moz-animation: $name $duration $delay $timing-function $iteration-count;
+  animation: $name $duration $delay $timing-function $iteration-count;
+}
+
+// keyframes mixin
+// ---
+// Generates vendor prefixes for keyframes animations
+
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}

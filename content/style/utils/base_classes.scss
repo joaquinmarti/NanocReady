@@ -1,0 +1,59 @@
+/**
+ * Base classes to use with @extend
+ */
+
+
+/* @group Image replacement */
+
+.IR {
+  display: block;
+  position: relative;
+  margin: 0px;
+  overflow: hidden;
+  background-position: left top;
+  background-repeat: no-repeat;
+  span {
+    visibility: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0px;
+    height: 0px;
+    overflow: hidden;
+  }
+}
+
+/* @end */
+
+/* @group Clear fix */
+
+.group {
+  &:after {
+    content: ".";
+    display: block;
+    height: 0px;
+    clear: both;
+    visibility: hidden;
+  }
+}
+
+/* @end */
+
+/* @group Vertical align middle */
+/* Needed to vertically center the content */
+.v_wrapper {
+  &:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+  }
+}
+
+.v_block {
+  display: inline-block;
+  vertical-align: middle;
+  width: 90%;
+}
+
+/* @end */

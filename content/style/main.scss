@@ -1,11 +1,25 @@
 // Mixins and functions
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
+@import "compass/css3/transition";
+@import "compass/css3/transform";
+@import "compass/css3/opacity";
+@import "compass/css3/box-sizing";
+@import "compass/css3/columns";
+@import "compass/css3/user-interface";
+@import "compass/css3/images";
+
+// Config, mixins and functions
+@import "_config";
+
+// Utils
+@import "utils/mixins";
+@import "utils/base_classes";
+@import "utils/reset";
 
 // Common CSS
-@import "common/reset";
-@import "common/utils";
-@import "common/common";
+@import "common/header";
+@import "common/footer";
 
 // Media
 @media screen and (max-width: 767px) {
@@ -23,3 +37,10 @@
 @media screen and (min-width: 1441px) {
   @import "media/huge.scss";
 }
+
+// Browser fixes
+@import "fixes/touch";
+@import "fixes/ie8";
+@import "fixes/ie9";
+@import "fixes/ie10";
+@import "fixes/ie11";
